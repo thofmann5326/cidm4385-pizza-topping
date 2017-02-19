@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="Pizzatopping">
+    <head>
+        <title>Pizza Topping</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body ng-controller="PizzaController as pt">
+        <h2>Pizza Name</h2>
+        
+        <select ng-model="selectedtopping1"
+                ng-options="y.topping for (x, y) in topping1"></select>
+                    
+        <h2>Toppings</h2>
+        
+        <ul ng-if="pt.pizzas != null">
+      <li ng-repeat="pizza in pt.pizzas" 
+		  ng-mouseenter="pt.emphasis(true, $event)" 
+		  ng-mouseleave="pt.emphasis(false, $event)"
+		  ng-class="pt.background"
+		  id="pizza{{$index}}">
+          
+            {{pizza.name}} {{pizza.topping1}} {{pizza.topping2}} {{pizza.topping3}}
+		[<label for="remove">Remove</label>
+		<input name=remove" type="checkbox"  ng-click="pt.remove($index)">]
+		<div ng-show="pt.showEdits"></div>
+		<!--Put editing tools here-->
+      </li>
+    </ul>
+    <label for="pizzaName">Pizza Name</label>
+    <input type="text" ng-model="pt.name" name="VALUE"/>
+    <br />
+    <br />
+    <label for="pizzaTopping1">Pizza Topping</label> 
+    <select ng-model="selectedtopping1"
+                    ng-options="y.topping for (x, y) in topping1"
+                    ng-change=""></select>
+    <br />
+    <br />
+    <label for="pizzaTopping3">Pizza Topping</label> 
+    <select ng-model="selectedtopping3"
+                    ng-options="y.topping for (x, y) in topping3"
+                    ng-change=""></select>
+    <br />
+    <br />
+    <label for="pizzaTopping3">Pizza Topping</label> 
+    <select ng-model="selectedtopping3"
+                    ng-options="y.topping for (x, y) in topping3"
+                    ng-change=""></select>
+    <br />
+    <br />
+    <h3>Pizza name is {{pt.name}}</h3>
+    <h3>Topping 1 is {{selectedtopping1.topping}}</h3>
+    <h3>Topping 2 is {{selectedtopping2.topping}}</h3>
+    <h3>Topping 3 is {{selectedtopping3.topping}}</h3>
+    <br />
+    <br />
+    <input type="button" value="update" ng-click="pt.update(pt.pizzaName, pt.pizzaTopping1, pt.pizzaTopping2, pt.pizzaTopping3)" /> 
+        
+        <script src="angular.js"></script>
+        <script src="pizza.js"></script>
+        
+    </body>
+</html>
